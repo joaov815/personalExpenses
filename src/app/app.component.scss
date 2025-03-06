@@ -1,0 +1,40 @@
+header {
+  height: 6vh;
+}
+
+section {
+  height: 94vh;
+  overflow: hidden;
+
+  aside {
+    width: 15rem;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+    background: #333;
+    color: white;
+    padding: 20px;
+    transition: transform 0.3s ease-in-out; /* Smooth animation */
+  }
+
+  .sidebar.hidden {
+    transform: translateX(-100%); /* Move sidebar out of view */
+  }
+
+  .hamburger {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+}
+

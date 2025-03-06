@@ -1,0 +1,27 @@
+<div style="padding: 20px">
+  <div>Gastos <button type="button">Adicionar gasto</button></div>
+
+  <div class="list">
+    @for(expense of expenses(); track expense.id) {
+    <div class="card">
+      <div class="main-section">
+        <div>{{ expense.value | currency : "BRL" }}</div>
+        <div>{{ expense.name }}</div>
+      </div>
+      <div>
+        <div>{{ expense.paymentKind?.name }}</div>
+        @if(expense.isOneTimePayment) {
+        <div>
+          parcela {{ expense.currentInstallment }} de
+          {{ expense.installmentsTotal }}
+        </div>
+        }
+      </div>
+      <!--
+
+      <div>Gastei mesmo hehehe</div>
+      <div>Cartão de crédito</div> -->
+    </div>
+    }
+  </div>
+</div>
