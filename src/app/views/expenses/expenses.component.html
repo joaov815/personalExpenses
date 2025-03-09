@@ -1,27 +1,27 @@
 <div style="padding: 20px">
-  <div>Gastos <button type="button">Adicionar gasto</button></div>
+  <div>
+    <p-button label="Adicionar Gasto" />
+  </div>
 
-  <div class="list">
-    @for(expense of expenses(); track expense.id) {
-    <div class="card">
-      <div class="main-section">
-        <div>{{ expense.value | currency : "BRL" }}</div>
-        <div>{{ expense.name }}</div>
-      </div>
-      <div>
-        <div>{{ expense.paymentKind?.name }}</div>
-        @if(expense.isOneTimePayment) {
-        <div>
-          parcela {{ expense.currentInstallment }} de
-          {{ expense.installmentsTotal }}
-        </div>
-        }
-      </div>
-      <!--
+  <div>
+    <p-table [value]="expenses()">
+      <ng-template #header>
+        <tr>
+          <th>Nome</th>
+          <th>Valor</th>
+          <th>Descrição</th>
+          <th>Categoria</th>
+        </tr>
+      </ng-template>
 
-      <div>Gastei mesmo hehehe</div>
-      <div>Cartão de crédito</div> -->
-    </div>
-    }
+      <ng-template #body let-expense>
+        <tr>
+          <td>{{ expense.name }}</td>
+          <td>{{ expense.value | currency : "BRL" }}</td>
+          <td>{{ expense.description }}</td>
+          <td>{{ expense.expenseKind?.name }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
   </div>
 </div>

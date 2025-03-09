@@ -2,10 +2,13 @@ import { Component, signal } from '@angular/core';
 import { Expense } from '../../models/expense.model';
 import { CommonModule } from '@angular/common';
 
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+
 @Component({
   selector: 'app-expenses',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonModule, TableModule],
   templateUrl: './expenses.component.html',
   styleUrl: './expenses.component.scss',
 })

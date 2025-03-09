@@ -1,10 +1,15 @@
-/** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: false,
   content: [
-    "./src/**/*.{html,ts}", // Scan HTML and TypeScript files for Tailwind classes
+    "./src/**/*.{html,ts}", // ✅ Include all Angular templates
+    "./node_modules/primeng/**/*.{css,scss}", // ✅ Ensure Tailwind processes PrimeNG styles
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#007BFF", // 🔹 Set your Tailwind primary color
+        text: "#000000",
+      },
+    },
   },
-  plugins: [],
 };
