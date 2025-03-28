@@ -1,0 +1,11 @@
+<app-topbar />
+
+<main [@.disabled]="animationsDisabled()">
+  @if(!isHidden()) {
+  <app-sidebar />
+  }
+
+  <section class="main-content" [@expandContent]="isHidden() ? 'full' : 'withSidebar'">
+    <router-outlet />
+  </section>
+</main>

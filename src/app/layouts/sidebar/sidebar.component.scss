@@ -1,0 +1,22 @@
+.sidebar {
+  position: fixed;
+  width: 15rem;
+  padding: 20px;
+  background-color: #fff;
+  transition: transform 0.3s ease-in-out;
+  width: 15rem;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    li a {
+      font-size: 1.125rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #000;
+    }
+  }
+}

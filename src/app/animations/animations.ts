@@ -15,6 +15,7 @@ export const slide = trigger('slide', [
     ),
   ]),
 ]);
+
 export const expandContent = trigger('expandContent', [
   state('withSidebar', style({ width: 'calc(100% - 15rem)' })),
   state('full', style({ width: '100%' })),

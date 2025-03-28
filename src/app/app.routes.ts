@@ -1,11 +1,25 @@
 import { Routes } from '@angular/router';
-import { ExpensesComponent } from './views/expenses/expenses.component';
+
+import { DefaultComponent } from './layouts/default/default.component';
+import { LoginComponent } from './views/login/login.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'expenses', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', title: 'Login', component: LoginComponent },
   {
-    component: ExpensesComponent,
-    path: 'expenses',
-    title: 'Expenses',
+    path: '',
+    component: DefaultComponent,
+    canActivate: [],
+    title: 'PE',
+    children: [
+      {
+        path: 'expenses',
+        title: 'PE - Expenses',
+        loadComponent: () =>
+          import('./views/expenses/expenses.component').then(
+            (m) => m.ExpensesComponent
+          ),
+      },
+    ],
   },
 ];

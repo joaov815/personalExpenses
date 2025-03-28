@@ -5,6 +5,9 @@ import Material from '@primeng/themes/material';
 
 import { routes } from './app.routes';
 import { providePrimeNG } from 'primeng/config';
+import { provideHttpClient } from '@angular/common/http';
+import { provideStore } from '@ngrx/store';
+import { defaultReducer } from './store/default/default.actions';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,5 +24,7 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
+    provideHttpClient(),
+    provideStore({ default: defaultReducer })
   ],
 };
