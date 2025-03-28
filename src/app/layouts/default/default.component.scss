@@ -10,7 +10,9 @@ main {
   .main-content {
     padding: 20px;
     background-color: #f4f4f4;
-    transition: width 0.3s ease-in-out, margin-left 0.3s ease-in-out;
+    transition:
+      width 0.3s ease-in-out,
+      margin-left 0.3s ease-in-out;
     margin-left: auto;
   }
 }

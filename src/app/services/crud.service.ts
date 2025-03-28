@@ -1,32 +1,27 @@
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
-import { environment } from '../environment/environment';
+import { environment } from "../environment/environment";
 
 export class CrudService {
   constructor(
     private readonly httpClient: HttpClient,
-    private readonly basePath = ''
+    private readonly basePath = "",
   ) {}
 
   get baseUrl(): string {
     return `${environment.apiUrl}/${this.basePath}`;
   }
 
-  create<CreatePayload = unknown, CreateResponse = unknown>(
-    payload: CreatePayload
-  ): Observable<CreateResponse> {
+  create<CreatePayload = unknown, CreateResponse = unknown>(payload: CreatePayload): Observable<CreateResponse> {
     return this.httpClient.post<CreateResponse>(this.baseUrl, payload);
   }
 
   updateById<UpdatePayload = unknown, UpdateResponse = unknown>(
     id: string,
-    payload: UpdatePayload
+    payload: UpdatePayload,
   ): Observable<UpdateResponse> {
-    return this.httpClient.patch<UpdateResponse>(
-      `${this.baseUrl}/${id}`,
-      payload
-    );
+    return this.httpClient.patch<UpdateResponse>(`${this.baseUrl}/${id}`, payload);
   }
 
   getById<UpdateResponse = unknown>(id: string): Observable<UpdateResponse> {

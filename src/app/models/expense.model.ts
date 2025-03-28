@@ -1,6 +1,6 @@
-import { Base } from './base.model';
-import { ExpenseKind } from './expense-kind.model';
-import { PaymentKind } from './payment-kind.model';
+import { Base } from "./base.model";
+import { ExpenseKind } from "./expense-kind.model";
+import { PaymentKind } from "./payment-kind.model";
 
 export class Expense extends Base<Expense> {
   constructor(partial: Partial<Expense>) {

@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 
-import { CrudService } from './crud.service';
+import { CrudService } from "./crud.service";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class ExpenseService extends CrudService {
   constructor(httpClient: HttpClient) {
-    super(httpClient, 'expenses');
+    super(httpClient, "expenses");
   }
 }

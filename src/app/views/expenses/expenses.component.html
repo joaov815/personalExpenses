@@ -17,7 +17,7 @@
       <ng-template #body let-expense>
         <tr>
           <td>{{ expense.name }}</td>
-          <td>{{ expense.value | currency : "BRL" }}</td>
+          <td>{{ expense.value | currency: "BRL" }}</td>
           <td>{{ expense.description }}</td>
           <td>{{ expense.expenseKind?.name }}</td>
         </tr>

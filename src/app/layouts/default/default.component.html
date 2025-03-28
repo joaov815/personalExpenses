@@ -1,8 +1,8 @@
 <app-topbar />
 
 <main [@.disabled]="animationsDisabled()">
-  @if(!isHidden()) {
-  <app-sidebar />
+  @if (!isHidden()) {
+    <app-sidebar />
   }
 
   <section class="main-content" [@expandContent]="isHidden() ? 'full' : 'withSidebar'">

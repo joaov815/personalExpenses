@@ -1,4 +1,4 @@
-import { Base } from './base.model';
+import { Base } from "./base.model";
 
 export class ExpenseKind extends Base<ExpenseKind> {
   name: string;

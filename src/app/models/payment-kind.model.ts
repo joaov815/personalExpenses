@@ -1,4 +1,4 @@
-import { Base } from './base.model';
+import { Base } from "./base.model";
 
 export class PaymentKind extends Base<PaymentKind> {
   name: string;
