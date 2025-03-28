@@ -1,1 +1,21 @@
-<p>login works!</p>
+<div class="login-container">
+  <form [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
+    <div class="login-center-container">
+      <div class="flex justify-center mb-10">
+        <img src="logo.png" width="150" alt="Logo" />
+      </div>
+
+      <div class="flex flex-col gap-y-1 mb-5">
+        <input pInputText formControlName="user" placeholder="Login" />
+        <input pInputText type="password" formControlName="password" placeholder="Password" />
+      </div>
+
+      <div class="keep-signed-in-toggle">
+        <p-toggleswitch inputId="keep-signed-in" formControlName="keepSignedIn" />
+        <label for="keep-signed-in"> Manter conectado </label>
+      </div>
+
+      <p-button type="submit" [style]="{ width: '100%' }" size="large" label="Entrar" />
+    </div>
+  </form>
+</div>
