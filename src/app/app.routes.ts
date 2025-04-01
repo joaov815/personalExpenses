@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 
+import { authGuard } from "./guards/auth.guard";
 import { DefaultComponent } from "./layouts/default/default.component";
 import { LoginComponent } from "./views/login/login.component";
 
@@ -9,7 +10,7 @@ export const routes: Routes = [
   {
     path: "",
     component: DefaultComponent,
-    canActivate: [],
+    canActivate: [authGuard],
     title: "PE",
     children: [
       {
