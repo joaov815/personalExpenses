@@ -1,5 +1,6 @@
 import { Component, Signal } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
+import { RouterLink } from "@angular/router";
 import { Store } from "@ngrx/store";
 
 import { slide } from "../../animations/animations";
@@ -8,7 +9,7 @@ import { selectIsSidebarHidden } from "../../store/default/default.selectors";
 @Component({
   selector: "app-sidebar",
   standalone: true,
-  imports: [MatIconModule],
+  imports: [MatIconModule, RouterLink],
   animations: [slide],
   templateUrl: "./sidebar.component.html",
   styleUrl: "./sidebar.component.scss",

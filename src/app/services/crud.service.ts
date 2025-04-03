@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 
 import { environment } from "../environment/environment";
 
-export class CrudService {
+export class CrudService<Response = unknown> {
   constructor(
     private readonly httpClient: HttpClient,
     private readonly basePath = "",
@@ -24,11 +24,11 @@ export class CrudService {
     return this.httpClient.patch<UpdateResponse>(`${this.baseUrl}/${id}`, payload);
   }
 
-  getById<UpdateResponse = unknown>(id: string): Observable<UpdateResponse> {
-    return this.httpClient.get<UpdateResponse>(`${this.baseUrl}/${id}`);
+  getById(id: string): Observable<Response> {
+    return this.httpClient.get<Response>(`${this.baseUrl}/${id}`);
   }
 
-  list<Response = unknown>(): Observable<Response[]> {
+  list(): Observable<Response[]> {
     return this.httpClient.get<Response[]>(this.baseUrl);
   }
 

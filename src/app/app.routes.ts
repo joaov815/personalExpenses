@@ -17,13 +17,27 @@ export const routes: Routes = [
     path: "",
     component: DefaultComponent,
     canActivate: [authGuard],
-    title: "PE",
+    title: "",
     children: [
       {
+        path: "home",
+        title: "Home",
+        loadComponent: () => import("./views/home/home.component").then(m => m.HomeComponent),
+      },
+      {
         path: "expenses",
-        title: "PE - Expenses",
+        title: "Expenses",
         loadComponent: () => import("./views/expenses/expenses.component").then(m => m.ExpensesComponent),
       },
+      {
+        path: "categories",
+        title: "Categories",
+        loadComponent: () => import("./views/categories/categories.component").then(m => m.CategoriesComponent),
+      },
     ],
+  },
+  {
+    path: "**",
+    redirectTo: "home",
   },
 ];
