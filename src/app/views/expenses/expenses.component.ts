@@ -1,9 +1,9 @@
-import { Component, OnInit, signal } from "@angular/core";
-import { Expense } from "../../models/expense.model";
 import { CommonModule } from "@angular/common";
-
+import { Component, OnInit, signal } from "@angular/core";
 import { ButtonModule } from "primeng/button";
 import { TableModule } from "primeng/table";
+
+import { Expense } from "../../models/expense.model";
 import { ExpenseService } from "../../services/expense.service";
 
 @Component({

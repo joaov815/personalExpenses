@@ -7,7 +7,7 @@ import { LoginResponse } from "../../models/auth.model";
 import { StorageConstantsEnum } from "../../storage/constants";
 import { AuthService } from "../../services/auth.service";
 
-import { authLogin, loginError, loginSuccess } from "./auth.actions";
+import { authLogin, authLogout, loginError, loginSuccess } from "./auth.actions";
 
 export const loginEffects = createEffect(
   (actions$ = inject(Actions), router = inject(Router), authService = inject(AuthService)) =>
@@ -37,7 +37,7 @@ export const loginEffects = createEffect(
 export const logoutEffects = createEffect(
   (actions$ = inject(Actions), router = inject(Router)) =>
     actions$.pipe(
-      ofType(authLogin),
+      ofType(authLogout),
       tap(() => {
         localStorage.clear();
         sessionStorage.clear();
