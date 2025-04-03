@@ -15,7 +15,7 @@ import { authLogin } from "../../store/auth/auth.actions";
   styleUrl: "./login.component.scss",
 })
 export class LoginComponent {
-  constructor(private readonly store: Store) {}
+  constructor(private readonly _store: Store) {}
 
   form = new UntypedFormGroup({
     user: new UntypedFormControl("", [Validators.required]),
@@ -24,6 +24,6 @@ export class LoginComponent {
   });
 
   submit(): void {
-    this.store.dispatch(authLogin(this.form.value));
+    this._store.dispatch(authLogin(this.form.value));
   }
 }
