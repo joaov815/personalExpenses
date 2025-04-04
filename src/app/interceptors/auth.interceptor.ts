@@ -7,8 +7,9 @@ import { catchError, Observable, switchMap, take, throwError } from "rxjs";
 
 import { environment } from "../environment/environment";
 import { LoginResponse } from "../models/auth.model";
-import { AuthService } from "../services/auth.service";
+import { loginSuccess } from "../store/auth/auth.actions";
 import { selectAuthState } from "../store/auth/auth.selectors";
+import { AuthService } from "../services/auth.service";
 import { StorageConstantsEnum } from "../storage/constants";
 
 const getNext$ = (
@@ -26,6 +27,7 @@ const getNext$ = (
       if (err.status === 401) {
         localStorage.clear();
         sessionStorage.clear();
+
         router.navigateByUrl("login");
       }
 
@@ -44,13 +46,14 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   return store.select(selectAuthState).pipe(
     take(1),
     switchMap(({ keepSignedIn, loginResponse }) => {
-      if (isAfter(new Date(), loginResponse.tokenExpiresAt)) {
+      if (isAfter(new Date(), new Date(loginResponse.tokenExpiresAt))) {
         return authService.getNewToken(loginResponse.refresh_token).pipe(
           switchMap(res => {
             const storage = keepSignedIn ? localStorage : sessionStorage;
             const newLoginResponse = new LoginResponse(res);
 
             storage.setItem(StorageConstantsEnum.LOGIN_RESPONSE, JSON.stringify(newLoginResponse));
+            store.dispatch(loginSuccess({ keepSignedIn, loginResponse }));
 
             return getNext$(req, router, loginResponse, next);
           }),

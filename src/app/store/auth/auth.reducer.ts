@@ -32,7 +32,12 @@ const initialState: IAuthState = {
 export const authReducer = createReducer(
   initialState,
   on(authLogin, state => ({ ...state, error: null, isLoading: true })),
-  on(authLogout, () => initialState),
+  on(authLogout, () => {
+    localStorage.clear();
+    sessionStorage.clear();
+
+    return initialState;
+  }),
   on(loginError, (state, { error }) => ({ ...state, error })),
   on(loginSuccess, (state, val) => ({
     ...state,
