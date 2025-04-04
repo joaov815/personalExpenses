@@ -6,8 +6,8 @@ import { Expense } from "../models/expense.model";
 import { CrudService } from "./crud.service";
 
 @Injectable({ providedIn: "root" })
-export class ExpenseService extends CrudService<Expense> {
+export class CategoryService extends CrudService<Expense> {
   constructor(httpClient: HttpClient) {
-    super(httpClient, "Expense");
+    super(httpClient, "ExpenseKind");
   }
 }

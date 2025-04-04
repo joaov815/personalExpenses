@@ -15,7 +15,7 @@
         <label for="keep-signed-in"> Manter conectado </label>
       </div>
 
-      <p-button type="submit" [style]="{ width: '100%' }" size="large" label="Entrar" />
+      <p-button type="submit" [loading]="isLoading()" [style]="{ width: '100%' }" size="large" label="Entrar" />
     </div>
   </form>
 </div>
