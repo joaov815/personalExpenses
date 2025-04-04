@@ -1,9 +1,9 @@
 import { Routes } from "@angular/router";
 
 import { authGuard } from "./guards/auth.guard";
+import { loginGuard } from "./guards/login.guard";
 import { DefaultComponent } from "./layouts/default/default.component";
 import { LoginComponent } from "./views/login/login.component";
-import { loginGuard } from "./guards/login.guard";
 
 export const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -32,7 +32,7 @@ export const routes: Routes = [
       {
         path: "categories",
         title: "Categories",
-        loadComponent: () => import("./views/categories/categories.component").then(m => m.CategoriesComponent),
+        loadChildren: () => import("./views/categories/categories.module").then(m => m.CategoriesModule),
       },
     ],
   },
