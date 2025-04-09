@@ -18,7 +18,7 @@ export class AuthService {
     body.set("password", password);
     body.set("scope", "openid profile");
 
-    return this.httpClient.post<ILoginResponse>(`${environment.authApiUrl}/token`, body, {
+    return this.httpClient.post<ILoginResponse>(environment.authApiUrl, body, {
       headers: { "content-type": "application/x-www-form-urlencoded" },
     });
   }
@@ -30,7 +30,7 @@ export class AuthService {
     body.set("grant_type", "refresh_token");
     body.set("refresh_token", refreshToken);
 
-    return this.httpClient.post<any>(`${environment.authApiUrl}/token`, body, {
+    return this.httpClient.post<any>(environment.authApiUrl, body, {
       headers: { "content-type": "application/x-www-form-urlencoded" },
     });
   }

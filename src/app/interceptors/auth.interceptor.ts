@@ -37,7 +37,7 @@ const getNext$ = (
 };
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  if (req.url.startsWith(`${environment.authApiUrl}/token`)) return next(req);
+  if (req.url === environment.authApiUrl) return next(req);
 
   const router = inject(Router);
   const store = inject(Store);

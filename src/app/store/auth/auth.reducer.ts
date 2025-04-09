@@ -22,21 +22,32 @@ export const getLoginResponseFromStorage = (): LoginResponse | null => {
   return JSON.parse(response) as LoginResponse;
 };
 
-const initialState: IAuthState = {
-  keepSignedIn: false,
-  error: null,
-  isLoading: false,
-  loginResponse: getLoginResponseFromStorage(),
-};
+function getInitialState(): IAuthState {
+  let response =
+    localStorage.getItem(StorageConstantsEnum.LOGIN_RESPONSE) ??
+    sessionStorage.getItem(StorageConstantsEnum.LOGIN_RESPONSE) ??
+    null;
+
+  if (response) {
+    response = JSON.parse(response);
+  }
+
+  return {
+    keepSignedIn: false,
+    error: null,
+    isLoading: false,
+    loginResponse: response as unknown as LoginResponse | null,
+  };
+}
 
 export const authReducer = createReducer(
-  initialState,
+  getInitialState(),
   on(authLogin, state => ({ ...state, error: null, isLoading: true })),
   on(authLogout, () => {
     localStorage.clear();
     sessionStorage.clear();
 
-    return initialState;
+    return getInitialState();
   }),
   on(loginError, (state, { error }) => ({ ...state, error })),
   on(loginSuccess, (state, val) => ({
