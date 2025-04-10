@@ -1,23 +1,23 @@
 <div class="pb-3">
-  <p-button label="Adicionar Gasto" />
+  <p-button label="Adicionar Gasto" routerLink="/expense" />
 </div>
 
 <p-table [value]="expenses()">
   <ng-template #header>
     <tr>
-      <th>Nome</th>
       <th>Valor</th>
-      <th>Descrição</th>
+      <th>Gasto</th>
+      <th>Data</th>
       <th>Categoria</th>
     </tr>
   </ng-template>
 
   <ng-template #body let-expense>
-    <tr>
-      <td>{{ expense.name }}</td>
+    <tr [routerLink]="['/expense', expense.id]" class="cursor-pointer">
       <td>{{ expense.value | currency: "BRL" }}</td>
-      <td>{{ expense.description }}</td>
-      <td>{{ expense.expenseKind?.name }}</td>
+      <td>{{ expense.name }}</td>
+      <td>{{ expense.date | date }}</td>
+      <td>{{ expense.expenseKind?.name ?? "-" }}</td>
     </tr>
   </ng-template>
 </p-table>

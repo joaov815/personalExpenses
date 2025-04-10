@@ -1,0 +1,100 @@
+<div class="form-container">
+  <h1 class="text-xl pb-3">Novo Gasto</h1>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="grid grid-cols-12 gap-4">
+      <div class="col-span-12 lg:col-span-4 md:col-span-6">
+        <div>
+          <label for="name">Gasto</label>
+          <input pInputText id="name" formControlName="name" class="w-full" appAutofocus />
+        </div>
+      </div>
+
+      <div class="col-span-12 lg:col-span-4 md:col-span-6">
+        <label for="value">Valor</label>
+        <p-inputnumber
+          inputId="value"
+          formControlName="value"
+          mode="currency"
+          currency="BRL"
+          locale="pt-BR"
+          class="w-full"
+        />
+      </div>
+
+      <div class="col-span-12 lg:col-span-4 md:col-span-6">
+        <label for="value">Data</label>
+        <p-datepicker dateFormat="dd/mm/yy" styleClass="w-full" formControlName="date" [showTime]="true" />
+      </div>
+
+      <div class="col-span-12 lg:col-span-4 md:col-span-6">
+        <div>
+          <label for="description">Descrição</label>
+          <input pInputText id="description" formControlName="description" class="w-full" />
+        </div>
+      </div>
+
+      <div class="col-span-12 lg:col-span-4 md:col-span-6">
+        <label for="expenseKindId">Categoria</label>
+        <p-select
+          id="expenseKindId"
+          optionLabel="name"
+          optionValue="id"
+          class="w-full"
+          formControlName="expenseKindId"
+          [options]="categories()"
+        />
+      </div>
+
+      <div class="col-span-12 lg:col-span-4 md:col-span-6">
+        <label for="paymentKindId">Forma de pagamento</label>
+        <p-select
+          id="paymentKindId"
+          optionLabel="name"
+          optionValue="id"
+          formControlName="paymentKindId"
+          class="w-full"
+          [options]="paymentOptions()"
+        />
+      </div>
+    </div>
+
+    <div class="flex align-items-center gap-2 py-3">
+      <label for="hasInstallement">Compra parcelada</label>
+      <p-toggleswitch #hasInstallment id="hasInstallement" formControlName="hasInstallments" />
+    </div>
+
+    @if (hasInstallment.checked()) {
+      <div class="grid grid-cols-12 gap-4 pb-3">
+        <div class="col-span-12 lg:col-span-4 md:col-span-6">
+          <label for="installmentsTotal">Total de parcelas</label>
+          <p-inputnumber inputId="installmentsTotal" formControlName="installmentsTotal" class="w-full" />
+        </div>
+
+        <div class="col-span-12 lg:col-span-4 md:col-span-6">
+          <label for="currentInstallment">Parcela atual</label>
+          <p-inputnumber
+            inputId="currentInstallment"
+            formControlName="currentInstallment"
+            currency="BRL"
+            locale="pt-BR"
+            class="w-full"
+          />
+        </div>
+
+        <div class="col-span-12 lg:col-span-4 md:col-span-6 flex justify-content-center items-center">
+          <div>
+            <p-checkbox
+              inputId="shouldAddOtherInstallments"
+              formControlName="shouldAddOtherInstallments"
+              [binary]="true"
+            />
+            <label for="shouldAddOtherInstallments" class="ml-2">Adicionar parcelas restantes?</label>
+          </div>
+        </div>
+      </div>
+    }
+
+    <p-button label="Salvar" type="submit" />
+  </form>
+</div>

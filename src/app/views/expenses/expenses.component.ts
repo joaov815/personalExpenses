@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit, signal, OnDestroy } from "@angular/core";
+import { RouterLink } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { TableModule } from "primeng/table";
 import { Subscription } from "rxjs";
@@ -10,7 +11,7 @@ import { ExpenseService } from "../../services/expense.service";
 @Component({
   selector: "app-expenses",
   standalone: true,
-  imports: [ButtonModule, CommonModule, TableModule],
+  imports: [ButtonModule, CommonModule, TableModule, RouterLink],
   templateUrl: "./expenses.component.html",
   styleUrl: "./expenses.component.scss",
 })

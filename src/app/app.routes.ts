@@ -30,6 +30,18 @@ export const routes: Routes = [
         loadComponent: () => import("./views/expenses/expenses.component").then(m => m.ExpensesComponent),
       },
       {
+        path: "expense",
+        title: "Expense",
+        loadComponent: () =>
+          import("./views/expenses/expense-form/expense-form.component").then(m => m.ExpenseFormComponent),
+      },
+      {
+        path: "expense/:id",
+        title: "Expense",
+        loadComponent: () =>
+          import("./views/expenses/expense-form/expense-form.component").then(m => m.ExpenseFormComponent),
+      },
+      {
         path: "categories",
         title: "Categories",
         loadChildren: () => import("./views/categories/categories.module").then(m => m.CategoriesModule),
