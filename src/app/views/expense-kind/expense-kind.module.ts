@@ -1,17 +1,17 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { CategoriesComponent } from "./categories.component";
-import { CategoryFormComponent } from "./category-form/category-form.component";
+
+import { ExpenseKindComponent } from "./expense-kind.component";
 
 const routes: Routes = [
   {
     path: "",
-    component: CategoriesComponent,
+    component: ExpenseKindComponent,
     data: { name: "Categories" },
   },
   {
     path: ":id",
-    component: CategoryFormComponent,
+    component: ExpenseKindComponent,
     data: { name: "Category" },
   },
 ];
@@ -19,4 +19,4 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
 })
-export class CategoriesModule {}
+export class ExpenseKindModule {}

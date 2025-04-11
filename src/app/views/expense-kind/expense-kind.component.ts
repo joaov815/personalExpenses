@@ -3,25 +3,26 @@ import { Component, OnInit, signal } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { TableModule } from "primeng/table";
-import { CategoryService } from "../../services/category.service";
 import { Subscription } from "rxjs";
+
+import { ExpenseKindService } from "../../services/expense-kind.service";
 import { ExpenseKind } from "../../models/expense-kind.model";
 
 @Component({
   selector: "pe-categories",
   standalone: true,
   imports: [ButtonModule, CommonModule, TableModule, RouterLink],
-  templateUrl: "./categories.component.html",
-  styleUrl: "./categories.component.scss",
+  templateUrl: "./expense-kind.component.html",
+  styleUrl: "./expense-kind.component.scss",
 })
-export class CategoriesComponent implements OnInit {
-  constructor(private readonly _categoryService: CategoryService) {}
+export class ExpenseKindComponent implements OnInit {
+  constructor(private readonly _expenseKindService: ExpenseKindService) {}
 
   loadSubscription: Subscription;
   categories = signal<ExpenseKind[]>([]);
 
   ngOnInit(): void {
-    this.loadSubscription = this._categoryService.list().subscribe(categories => {
+    this.loadSubscription = this._expenseKindService.list().subscribe(categories => {
       this.categories.set(categories);
     });
   }

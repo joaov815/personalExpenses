@@ -14,9 +14,9 @@ import { MessageService } from "primeng/api";
 import { AutofocusDirective } from "../../../directives/autofocus.directive";
 import { ExpenseKind } from "../../../models/expense-kind.model";
 import { PaymentKind } from "../../../models/payment-kind.model";
-import { CategoryService } from "../../../services/category.service";
+import { ExpenseKindService } from "../../../services/expense-kind.service";
 import { ExpenseService } from "../../../services/expense.service";
-import { PaymentKindService } from "../../../services/paymentKind.service";
+import { PaymentKindService } from "../../../services/payment-kind.service";
 
 @Component({
   selector: "pe-expense-form",
@@ -40,7 +40,7 @@ import { PaymentKindService } from "../../../services/paymentKind.service";
 export class ExpenseFormComponent implements OnInit {
   constructor(
     private readonly _expenseService: ExpenseService,
-    private readonly _categoryService: CategoryService,
+    private readonly _expenseKindService: ExpenseKindService,
     private readonly _paymentKindService: PaymentKindService,
     private readonly _activedRoute: ActivatedRoute,
     private readonly _messageService: MessageService,
@@ -66,7 +66,7 @@ export class ExpenseFormComponent implements OnInit {
   ngOnInit(): void {
     this.id.set(this._activedRoute.snapshot.params["id"] ?? null);
 
-    this._categoryService.list().subscribe(categories => {
+    this._expenseKindService.list().subscribe(categories => {
       this.categories.set(categories);
       console.log(categories);
     });
@@ -89,7 +89,6 @@ export class ExpenseFormComponent implements OnInit {
   }
 
   submit(): void {
-    // this._expenseService.create();
     const payload = this.form.value;
 
     if (this.form.valid) {

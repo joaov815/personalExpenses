@@ -6,7 +6,7 @@ import { ExpenseKind } from "../models/expense-kind.model";
 import { CrudService } from "./crud.service";
 
 @Injectable({ providedIn: "root" })
-export class CategoryService extends CrudService<ExpenseKind> {
+export class ExpenseKindService extends CrudService<ExpenseKind> {
   constructor(httpClient: HttpClient) {
     super(httpClient, "ExpenseKind");
   }

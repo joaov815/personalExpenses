@@ -44,7 +44,7 @@ export const routes: Routes = [
       {
         path: "categories",
         title: "Categories",
-        loadChildren: () => import("./views/categories/categories.module").then(m => m.CategoriesModule),
+        loadChildren: () => import("./views/expense-kind/expense-kind.module").then(m => m.ExpenseKindModule),
       },
     ],
   },
