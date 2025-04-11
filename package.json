@@ -29,6 +29,7 @@
     "@tailwindcss/postcss": "^4.0.11",
     "class-transformer": "^0.5.1",
     "date-fns": "^4.1.0",
+    "lodash": "^4.17.21",
     "prettier": "^3.5.3",
     "primeicons": "^7.0.0",
     "primeng": "^18.0.2",

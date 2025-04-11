@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, take } from "rxjs";
 
 import { environment } from "../environment/environment";
 
@@ -14,14 +14,14 @@ export class CrudService<Response = unknown> {
   }
 
   create<CreatePayload = unknown, CreateResponse = unknown>(payload: CreatePayload): Observable<CreateResponse> {
-    return this.httpClient.post<CreateResponse>(this.baseUrl, payload);
+    return this.httpClient.post<CreateResponse>(this.baseUrl, payload).pipe(take(1));
   }
 
   updateById<UpdatePayload = unknown, UpdateResponse = unknown>(
     id: string,
     payload: UpdatePayload,
   ): Observable<UpdateResponse> {
-    return this.httpClient.patch<UpdateResponse>(`${this.baseUrl}/${id}`, payload);
+    return this.httpClient.patch<UpdateResponse>(`${this.baseUrl}/${id}`, payload).pipe(take(1));
   }
 
   getById(id: string): Observable<Response> {

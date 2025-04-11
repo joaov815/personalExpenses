@@ -1,35 +1,31 @@
-import { Component, signal } from "@angular/core";
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { Component } from "@angular/core";
+import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MessageService } from "primeng/api";
-import { Button } from "primeng/button";
 import { InputText } from "primeng/inputtext";
-import { Toast } from "primeng/toast";
 
 import { AutofocusDirective } from "../../../directives/autofocus.directive";
 import { ExpenseKindService } from "../../../services/expense-kind.service";
+import { CrudForm } from "../../../common/crud-form";
+import { FormLayoutComponent } from "../../../layouts/form-layout/form-layout.component";
 
 @Component({
   selector: "pe-category-form",
   standalone: true,
-  imports: [Button, InputText, ReactiveFormsModule, AutofocusDirective, Toast],
+  imports: [InputText, ReactiveFormsModule, AutofocusDirective, FormLayoutComponent],
   templateUrl: "./expense-kind-form.component.html",
   styleUrl: "./expense-kind-form.component.scss",
   providers: [MessageService],
 })
-export class ExpenseKindComponent {
-  constructor(
-    private readonly _expenseKindService: ExpenseKindService,
-    private readonly _messageService: MessageService,
-  ) {}
-
-  form = new FormGroup({
-    name: new FormControl("", [Validators.required]),
-    description: new FormControl(null),
-  });
-
-  id = signal<string | null>(null);
-
-  submit() {
-    //
+export class ExpenseKindFormComponent {
+  constructor(expenseKindService: ExpenseKindService) {
+    this.form = new CrudForm({
+      controls: {
+        name: new FormControl("", [Validators.required]),
+        description: new FormControl(null),
+      },
+      crudService: expenseKindService,
+    });
   }
+
+  form: CrudForm;
 }

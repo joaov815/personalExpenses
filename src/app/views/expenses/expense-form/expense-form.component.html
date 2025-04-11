@@ -1,12 +1,10 @@
-<div class="form-container">
-  <h1 class="text-xl pb-3">Novo Gasto</h1>
-
-  <form [formGroup]="form" (ngSubmit)="submit()">
+<pe-form-layout [form]="form">
+  <form [formGroup]="form">
     <div class="grid grid-cols-12 gap-4">
       <div class="col-span-12 lg:col-span-4 md:col-span-6">
         <div>
           <label for="name">Gasto</label>
-          <input pInputText id="name" formControlName="name" class="w-full" appAutofocus />
+          <input pInputText id="name" formControlName="name" class="w-full" peAutofocus />
         </div>
       </div>
 
@@ -94,9 +92,5 @@
         </div>
       </div>
     }
-
-    <p-button label="Salvar" type="submit" />
   </form>
-</div>
-
-<p-toast position="bottom-right" />
+</pe-form-layout>

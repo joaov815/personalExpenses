@@ -17,6 +17,7 @@ export class Expense extends Base<Expense> {
   currentInstallment?: number | null;
   expenseKind?: ExpenseKind | null;
   paymentKind?: PaymentKind | null;
+  hasInstallments?: boolean;
 
   get isOneTimePayment(): boolean {
     return !!(this.installmentsTotal && this.installmentsValue);

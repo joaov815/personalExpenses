@@ -4,6 +4,8 @@ import { authGuard } from "./guards/auth.guard";
 import { loginGuard } from "./guards/login.guard";
 import { DefaultComponent } from "./layouts/default/default.component";
 import { LoginComponent } from "./views/login/login.component";
+import { ExpenseKindFormComponent } from "./views/expense-kind/expense-kind-form/expense-kind-form.component";
+import { ExpenseKindComponent } from "./views/expense-kind/expense-kind.component";
 
 export const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -43,8 +45,18 @@ export const routes: Routes = [
       },
       {
         path: "categories",
-        title: "Categories",
-        loadChildren: () => import("./views/expense-kind/expense-kind.module").then(m => m.ExpenseKindModule),
+        component: ExpenseKindComponent,
+        data: { name: "Categories" },
+      },
+      {
+        path: "category",
+        component: ExpenseKindFormComponent,
+        data: { name: "Category" },
+      },
+      {
+        path: "category/:id",
+        component: ExpenseKindFormComponent,
+        data: { name: "Category" },
       },
     ],
   },

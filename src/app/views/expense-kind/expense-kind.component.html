@@ -1,5 +1,5 @@
 <div class="pb-3">
-  <p-button label="Adicionar Categoria" routerLink="/categories/novo" />
+  <p-button label="Adicionar Categoria" routerLink="/category" />
 </div>
 
 <p-table [value]="categories()">
@@ -11,7 +11,7 @@
   </ng-template>
 
   <ng-template #body let-category>
-    <tr>
+    <tr [routerLink]="['/category', category.id]" class="cursor-pointer">
       <td>{{ category.name }}</td>
       <td>{{ category.description }}</td>
     </tr>
