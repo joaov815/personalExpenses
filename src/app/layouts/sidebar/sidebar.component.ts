@@ -7,7 +7,7 @@ import { slide } from "../../animations/animations";
 import { selectIsSidebarHidden } from "../../store/default/default.selectors";
 
 @Component({
-  selector: "app-sidebar",
+  selector: "pe-sidebar",
   standalone: true,
   imports: [MatIconModule, RouterLink],
   animations: [slide],

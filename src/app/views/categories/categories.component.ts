@@ -8,7 +8,7 @@ import { Subscription } from "rxjs";
 import { ExpenseKind } from "../../models/expense-kind.model";
 
 @Component({
-  selector: "app-categories",
+  selector: "pe-categories",
   standalone: true,
   imports: [ButtonModule, CommonModule, TableModule, RouterLink],
   templateUrl: "./categories.component.html",

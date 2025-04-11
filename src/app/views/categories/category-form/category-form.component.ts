@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-category-form',
+  selector: "pe-category-form",
   standalone: true,
   imports: [],
-  templateUrl: './category-form.component.html',
-  styleUrl: './category-form.component.scss'
+  templateUrl: "./category-form.component.html",
+  styleUrl: "./category-form.component.scss",
 })
-export class CategoryFormComponent {
-
-}
+export class CategoryFormComponent {}

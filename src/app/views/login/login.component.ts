@@ -9,7 +9,7 @@ import { authLogin } from "../../store/auth/auth.actions";
 import { selectAuthIsLoading } from "../../store/auth/auth.selectors";
 
 @Component({
-  selector: "app-login",
+  selector: "pe-login",
   standalone: true,
   imports: [ButtonModule, InputTextModule, ReactiveFormsModule, ToggleSwitchModule],
   templateUrl: "./login.component.html",

@@ -1,5 +1,6 @@
 import { Component, signal, OnInit } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { ActivatedRoute } from "@angular/router";
 import { DatePicker } from "primeng/datepicker";
 import { InputNumber } from "primeng/inputnumber";
 import { InputText } from "primeng/inputtext";
@@ -13,13 +14,12 @@ import { MessageService } from "primeng/api";
 import { AutofocusDirective } from "../../../directives/autofocus.directive";
 import { ExpenseKind } from "../../../models/expense-kind.model";
 import { PaymentKind } from "../../../models/payment-kind.model";
-import { ExpenseService } from "../../../services/expense.service";
 import { CategoryService } from "../../../services/category.service";
+import { ExpenseService } from "../../../services/expense.service";
 import { PaymentKindService } from "../../../services/paymentKind.service";
-import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
-  selector: "app-expense-form",
+  selector: "pe-expense-form",
   standalone: true,
   imports: [
     Button,
@@ -43,7 +43,6 @@ export class ExpenseFormComponent implements OnInit {
     private readonly _categoryService: CategoryService,
     private readonly _paymentKindService: PaymentKindService,
     private readonly _activedRoute: ActivatedRoute,
-    private readonly _router: Router,
     private readonly _messageService: MessageService,
   ) {}
 

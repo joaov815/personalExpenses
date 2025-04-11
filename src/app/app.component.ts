@@ -4,7 +4,7 @@ import { RouterOutlet } from "@angular/router";
 import { expandContent, slide } from "./animations/animations";
 
 @Component({
-  selector: "app-root",
+  selector: "pe-root",
   standalone: true,
   imports: [RouterOutlet],
   template: `<router-outlet />`,

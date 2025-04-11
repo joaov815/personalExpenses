@@ -9,7 +9,7 @@ import { Expense } from "../../models/expense.model";
 import { ExpenseService } from "../../services/expense.service";
 
 @Component({
-  selector: "app-expenses",
+  selector: "pe-expenses",
   standalone: true,
   imports: [ButtonModule, CommonModule, TableModule, RouterLink],
   templateUrl: "./expenses.component.html",

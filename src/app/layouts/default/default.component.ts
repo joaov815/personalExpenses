@@ -8,7 +8,7 @@ import { SidebarComponent } from "../sidebar/sidebar.component";
 import { selectIsSidebarHidden } from "../../store/default/default.selectors";
 
 @Component({
-  selector: "app-default",
+  selector: "pe-default",
   standalone: true,
   imports: [RouterOutlet, SidebarComponent, TopbarComponent],
   templateUrl: "./default.component.html",

@@ -8,7 +8,7 @@ import { toggleSidebar } from "../../store/default/default.reducer";
 import { authLogout } from "../../store/auth/auth.actions";
 
 @Component({
-  selector: "app-topbar",
+  selector: "pe-topbar",
   standalone: true,
   imports: [ButtonModule, MatIconModule, PopoverModule],
   templateUrl: "./topbar.component.html",
