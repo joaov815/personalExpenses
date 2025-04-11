@@ -55,7 +55,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
             storage.setItem(StorageConstantsEnum.LOGIN_RESPONSE, JSON.stringify(newLoginResponse));
             store.dispatch(loginSuccess({ keepSignedIn, loginResponse }));
 
-            return getNext$(req, router, loginResponse, next);
+            return getNext$(req, router, newLoginResponse, next);
           }),
         );
       }
