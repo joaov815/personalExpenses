@@ -7,6 +7,8 @@ import { Select } from "primeng/select";
 import { ToggleSwitch } from "primeng/toggleswitch";
 import { Checkbox } from "primeng/checkbox";
 import { Button } from "primeng/button";
+import { Toast } from "primeng/toast";
+import { MessageService } from "primeng/api";
 
 import { AutofocusDirective } from "../../../directives/autofocus.directive";
 import { ExpenseKind } from "../../../models/expense-kind.model";
@@ -14,7 +16,7 @@ import { PaymentKind } from "../../../models/payment-kind.model";
 import { ExpenseService } from "../../../services/expense.service";
 import { CategoryService } from "../../../services/category.service";
 import { PaymentKindService } from "../../../services/paymentKind.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-expense-form",
@@ -29,7 +31,9 @@ import { ActivatedRoute } from "@angular/router";
     ToggleSwitch,
     ReactiveFormsModule,
     AutofocusDirective,
+    Toast,
   ],
+  providers: [MessageService],
   templateUrl: "./expense-form.component.html",
   styleUrl: "./expense-form.component.scss",
 })
@@ -39,10 +43,12 @@ export class ExpenseFormComponent implements OnInit {
     private readonly _categoryService: CategoryService,
     private readonly _paymentKindService: PaymentKindService,
     private readonly _activedRoute: ActivatedRoute,
+    private readonly _router: Router,
+    private readonly _messageService: MessageService,
   ) {}
 
   form = new FormGroup({
-    name: new FormControl("Novo gasto", [Validators.required]),
+    name: new FormControl("", [Validators.required]),
     value: new FormControl(0, [Validators.required, Validators.min(0.01)]),
     date: new FormControl(new Date(), [Validators.required]),
     description: new FormControl(null),
@@ -88,17 +94,51 @@ export class ExpenseFormComponent implements OnInit {
     const payload = this.form.value;
 
     if (this.form.valid) {
-      const save$ = this.id()
-        ? this._expenseService.updateById(this.id(), payload)
-        : this._expenseService.create(payload);
+      this._expenseService.updateById(this.id(), payload).subscribe({
+        next: () => {
+          this._messageService.add({
+            severity: "success",
+            summary: "Sucesso",
+            detail: "Gasto atualizado com sucesso",
+            life: 3000,
+          });
+        },
+      });
 
-      save$.subscribe(() => {
-        console.log("success");
+      this._expenseService.create(payload).subscribe({
+        next: () => {
+          this._messageService.add({
+            severity: "success",
+            summary: "Sucesso",
+            detail: "Gasto adicionado",
+            life: 3000,
+          });
+
+          this.form.reset();
+          this.form.patchValue({
+            value: 0,
+            date: new Date(),
+          });
+        },
+        error: () => {
+          this._messageService.add({
+            severity: "error",
+            summary: "Erro",
+            detail: "Houve um erro ao salvar novo gasto",
+            life: 3000,
+          });
+        },
       });
     } else {
-      console.log(this.form);
-      console.log("fail");
-      this.form.markAsTouched();
+      this.markAllFieldsAsTouchedAndDirty(this.form);
     }
+  }
+
+  markAllFieldsAsTouchedAndDirty(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach(control => {
+      if ((control as any).controls) {
+        this.markAllFieldsAsTouchedAndDirty(control as FormGroup);
+      }
+    });
   }
 }
